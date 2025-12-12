@@ -4,7 +4,8 @@
 TaskHandle_t speedControllerTaskHandle = NULL;
 
 /**
- * @brief Inicialización de la tarea.
+ * @brief Inicializa la tarea que convierte target_speed (%)
+ *        en tiempo de conmutación (ms) para el motor BLDC.
  */
 void speedControllerTaskInit(uint8_t core){
     xTaskCreatePinnedToCore(
@@ -41,7 +42,6 @@ void speedControllerTask(void* pvParameters){
 
         MotorState.comm_delay_ms = delay_ms;
 
-        // Actualizar el control a 20 Hz
-        vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(25));
     }
 }

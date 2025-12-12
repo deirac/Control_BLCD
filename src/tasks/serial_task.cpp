@@ -5,7 +5,11 @@ TaskHandle_t serialTaskHandle = NULL;
 
 
 /**
- * @brief 
+ * @brief Iniciación puerto serial y comandos: 
+ * -> spdxxx <velocidad> [0...100]
+ * -> dutyxx <duty> [0..100]
+ * -> dirx <dirección> <0->Forward, 1->Reverse>
+ * @param core
  */
 void serialTaskInit(uint8_t core){
     xTaskCreatePinnedToCore(
