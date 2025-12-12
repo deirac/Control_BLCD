@@ -20,12 +20,14 @@ void commutationTask(void* pvParameters){
 
     while(1){
         // Avanza la fase
+        xSemaphoreTake(motorStateMutex, portMAX_DELAY);
         MotorState.phase++;
-        if (MotorState.phase >= 6)
-            MotorState.phase = 0;
-
+        if (MotorState.phase >= 6) MotorState.phase = 0;
+        uint16_t delay = MotorState.comm_delay_ms;
+        xSemaphoreGive(motorStateMutex);
         // Tiempo entre conmutaciones →
         // ajustado por el controlador de velocidad
-        vTaskDelay(pdMS_TO_TICKS(MotorState.comm_delay_ms));
+        vTaskDelay(pdMS_TO_TICKS(delay));
+        
     }
 }

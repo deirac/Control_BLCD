@@ -1,5 +1,7 @@
 #pragma once
 #include <Arduino.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/semphr.h>
 
 typedef struct {
     volatile uint8_t phase;           // 0–5
@@ -10,3 +12,4 @@ typedef struct {
 } motor_state_t;
 
 extern motor_state_t MotorState;
+extern SemaphoreHandle_t motorStateMutex;

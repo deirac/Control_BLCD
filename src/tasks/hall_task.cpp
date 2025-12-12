@@ -54,7 +54,9 @@ void hallTask(void* pvParameters){
         phase = findHallIndex();
 
         if (phase != -1){
+            xSemaphoreTake(motorStateMutex, portMAX_DELAY);
             MotorState.phase = phase;    
+            xSemaphoreGive(motorStateMutex);
         }
         else {
             Serial.println("[HALL]: Err, noise or invalid secuence sensors.");
