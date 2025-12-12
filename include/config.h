@@ -13,20 +13,20 @@
 // ------------------------------------------------
 // ---------- Pines sensores HALL -----------------
 // ------------------------------------------------
-#define PIN_HALL_A 34                                   
-#define PIN_HALL_B 35
-#define PIN_HALL_C 32
+#define PIN_HALL_U 34                                   
+#define PIN_HALL_V 35
+#define PIN_HALL_W 32
 
 // ------------------------------------------------
 // ------ Pines PWM para IR2110 (High side) -------
 // ------------------------------------------------
-#define HS_A_PIN 18
-#define HS_B_PIN 19
-#define HS_C_PIN 21
+#define PIN_HS_U 18
+#define PIN_HS_V 19
+#define PIN_HS_W 21
 
 // ------------------------------------------------
 // ------ Pines PWM para IR2110 (Low side) --------
 // ------------------------------------------------
-#define LS_A_PIN 5
-#define LS_B_PIN 4
-#define LS_C_PIN 2
+#define PIN_LS_U 5
+#define PIN_LS_V 4
+#define PIN_LS_W 2
