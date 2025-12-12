@@ -1,18 +1,19 @@
 #include <Arduino.h>
+#include "config.h"
+#include "motor_state.h"
 
-// put function declarations here:
-int myFunction(int, int);
+// ===== TAREAS =====
+#include "tasks/serial_task.h"
+#include "tasks/hall_task.h"
+#include "tasks/commutation_task.h"
+#include "tasks/speed_task.h"
+#include "tasks/pwm_task.h"
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // no hace nada 
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
