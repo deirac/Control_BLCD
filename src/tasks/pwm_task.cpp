@@ -37,8 +37,11 @@ void pwmTask(void* pvParameters){
     ledcAttachPin(PIN_LS_W, 5);
 
     while(1){
+        xSemaphoreTake(motorStateMutex, portMAX_DELAY);
         uint8_t ph = MotorState.phase;
         uint16_t duty = MotorState.duty;
+        uint16_t delay = MotorState.comm_delay_ms;
+        xSemaphoreGive(motorStateMutex);
 
         const uint8_t (*HT)[3];
         const uint8_t (*LT)[3];
@@ -61,6 +64,6 @@ void pwmTask(void* pvParameters){
         ledcWrite(4, LT[ph][1] ? duty : 0);
         ledcWrite(5, LT[ph][2] ? duty : 0);
 
-        vTaskDelay(1);
+        vTaskDelay(pdMS_TO_TICKS(delay));
     }
 }

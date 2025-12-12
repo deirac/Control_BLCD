@@ -29,6 +29,7 @@ void speedControllerTask(void* pvParameters){
     (void)pvParameters;
 
     while(1){
+        xSemaphoreTake(motorStateMutex, portMAX_DELAY);
         int spd = MotorState.speed_target;
 
         // Limitar a rango válido
@@ -38,10 +39,11 @@ void speedControllerTask(void* pvParameters){
         // Traducir velocidad a delay
         // 0%  = 40 ms  (muy lento)
         // 100% = 2 ms  (rápido)
-        uint16_t delay_ms = map(spd, 0, 100, 40, 2);
+        uint16_t delay_ms = map(spd, 0, 100, 40, 1);
 
         MotorState.comm_delay_ms = delay_ms;
-
+        xSemaphoreGive(motorStateMutex);
+        
         vTaskDelay(pdMS_TO_TICKS(25));
     }
 }
