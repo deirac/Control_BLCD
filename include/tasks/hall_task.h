@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include "commutation_table.h"
 #include "config.h"
-#include "types.h"
 
 extern TaskHandle_t hallTaskHandle;     // Sensor HALL task handler 
 extern uint8_t HALL_BUFER[6];           // Bufer para comprobar estados

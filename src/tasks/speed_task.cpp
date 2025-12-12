@@ -1,4 +1,4 @@
-#include "speed_controller.h"
+#include "tasks/speed_task.h"
 #include "motor_state.h"
 
 TaskHandle_t speedControllerTaskHandle = NULL;

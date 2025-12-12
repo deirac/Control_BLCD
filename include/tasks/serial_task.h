@@ -1,6 +1,5 @@
 #pragma once
 #include <Arduino.h> 
-#include "types.h"
 
 extern TaskHandle_t serialTaskHandle;   // Serial task handler
 

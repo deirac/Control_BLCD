@@ -1,5 +1,5 @@
 #include "tasks/serial_task.h"
-
+#include "motor_state.h"
 
 TaskHandle_t serialTaskHandle = NULL;
 
@@ -30,10 +30,10 @@ void serialTask(void* pvParameters){
             input = Serial.readStringUntil('\n');
 
             if (input.startsWith("spd")){
-                MotorState.target_speed = input.substring(3).toInt();
+                MotorState.speed_target= input.substring(3).toInt();
             }
             else if (input.startsWith("duty")){
-                MotorState.pwm_duty = input.substring(4).toInt();
+                MotorState.duty = input.substring(4).toInt();
             }
             else if (input.startsWith("dir")){
                 MotorState.direction = input.substring(3).toInt();

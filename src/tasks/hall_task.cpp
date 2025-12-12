@@ -1,9 +1,13 @@
 #include "tasks/hall_task.h"
+#include "motor_state.h"
 
 TaskHandle_t hallTaskHandle = NULL;
 uint8_t HALL_BUFER[6] = {0,0,0,0,0,0};
 uint8_t HALL[3] = {0,0,0};
 
+// ====================================================
+// ============== FUNCIONES AUXILIARES ================
+// ====================================================
 /**
  * @brief Función auxiliar para leer la posición Hall.
  * @param void
@@ -33,9 +37,37 @@ static int findHallIndex(){
     return -1;  // error / ruido / transición inválida
 }
 
+// ===================================================
+// ============= FUNCIONES DE LA TAREA ===============
+// ===================================================
+
+/**
+ * @brief Función de sensado 
+ * @param pvParameters
+ */
+void hallTask(void* pvParameters){
+    (void)pvParameters;
+    uint8_t phase = -1; 
+
+    while(1){
+        readHallState();
+        phase = findHallIndex();
+
+        if (phase != -1){
+            MotorState.phase = phase;    
+        }
+        else {
+            Serial.println("[HALL]: Err, noise or invalid secuence sensors.");
+        }
+        vTaskDelay(1);  // 1 ms
+    }
+}
 
 
-
+/**
+ * @brief Tarea de sensado
+ * @param core
+ */
 void hallTaskInit(uint8_t core){
     pinMode(PIN_HALL_U, INPUT);
     pinMode(PIN_HALL_V, INPUT);
@@ -50,25 +82,4 @@ void hallTaskInit(uint8_t core){
         &hallTaskHandle,
         core
     );
-}
-
-void hallTask(void* pvParameters){
-    (void)pvParameters;
-    uint8_t phase = -1; 
-
-    while(1){
-
-        readHallState();
-        phase = findHallIndex();
-
-        if (phase != -1){
-            MotorState.phase = phase;    
-        }
-        else {
-            Serial.println("[HALL]: Err, noise or invalid secuence sensors.");
-        }
-        
-
-        vTaskDelay(1);  // 1 ms
-    }
 }
