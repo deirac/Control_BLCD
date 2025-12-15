@@ -7,7 +7,7 @@
 // -------------------------------------------------
 #define PWM_FREQ        20e3                            // Frecuencia en kHz
 #define PWM_RESOLUTION  8                               // Resolución en bits 
-#define PWM_MAX_DUTY    ((1 << PWM_RESOLUTION) - 1)     // Duty maximo de 4095
+#define PWM_MAX_DUTY    ((1 << PWM_RESOLUTION) - 1)     // Duty maximo de 255
 #define DEADTIME_US     4                               // Dead time en micro segundos 
 
 // ------------------------------------------------

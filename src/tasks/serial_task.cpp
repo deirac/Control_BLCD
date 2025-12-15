@@ -27,10 +27,9 @@ void serialTaskInit(uint8_t core){
 void serialTask(void* pvParameters) {
     (void)pvParameters;
 
-    Serial.begin(115200);
     String buffer = "";
 
-    Serial.print(">>> "); // prompt inicial
+    Serial.print("Esperando comando >>> "); // prompt inicial
 
     while (1) {
         // Esperar hasta que llegue un comando completo terminado en '\n'
